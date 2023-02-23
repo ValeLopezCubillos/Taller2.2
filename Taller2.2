@@ -1,0 +1,33 @@
+def maxDiferencia(S):
+    # Caso base
+    if len(S) < 2:
+        return 0
+    
+    # S[:mitad] permite segmentar la secuencia
+    mitad = len(S) // 2
+    maxizq = maxDiferencia(S[:mitad])
+    maxder = maxDiferencia(S[mitad:])
+    
+    # funcion de python que permite sumar las partes de la secuencia sin tener que hacer el while
+    sum1 = sum(S[:mitad])
+    sum2 = sum(S[mitad:])
+    
+    
+    resta = (sum1 - sum2)
+    return max(maxizq, maxder, resta)
+    
+def main():
+    
+    #S = [-36,-49,59,52,74,5]
+
+    archivo = open("caso1.txt", "r")
+    contenido = archivo.read()
+    archivo.close()
+    S = [float(valor) for valor in contenido.split()]
+
+
+    resultado = maxDiferencia(S)
+    print("La máxima i-diferencia de la secuencia es",resultado)
+    
+if __name__ == "__main__":
+    main()
